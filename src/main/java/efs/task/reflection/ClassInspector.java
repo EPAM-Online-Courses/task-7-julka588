@@ -44,8 +44,17 @@ public class ClassInspector {
    * implementowane
    */
   public static Collection<String> getAllDeclaredMethods(final Class<?> type) {
-    //TODO usuń zawartość tej metody i umieść tutaj swoje rozwiązanie
-    return Collections.emptyList();
+    Set<String> set = new HashSet<>();
+
+    for (Method m : type.getDeclaredMethods()) {
+        set.add(m.getName());
+    }
+    for(Class i : type.getInterfaces()) {
+        for(Method m : i.getDeclaredMethods()) {
+            set.add(m.getName());
+        }
+    }
+    return set;
   }
 
     /**
